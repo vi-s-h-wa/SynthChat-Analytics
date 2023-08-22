@@ -1,0 +1,238 @@
+{% load static %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Borel&display=swap');
+
+
+#head{
+    font-size: larger;
+    font-weight: bold;
+    font-family: 'Borel', cursive;
+}
+#lhead{
+    font-size: large;
+    font-family: 'Borel', cursive;
+}
+.user{
+    backdrop-filter:brightness(75%);
+    padding: 10px 20px;
+    color: white;
+    font-size: 17px;
+    border-radius: 20px;
+    margin: 15px 0px;
+    letter-spacing: 1.4px;
+}
+.bot{
+    backdrop-filter:brightness(75%);
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    font-size: 17px;
+    line-height: 25px;
+    letter-spacing: 1.4px;
+} 
+.chat{
+    height: 100%;
+    overflow-y: auto;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+
+}
+ /*
+    border:1px solid white;
+    border-radius:20px;
+    
+}
+.chatdisplay{
+    padding: 15px;
+    height: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    width: 93%;
+}
+.chatdisplay::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.chatdisplay::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.chatdisplay::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+.chatinput{
+    padding: 5px;
+    height: 5%;
+    width: 93%;
+    margin-bottom: 10px;
+}
+*/
+#cinp{
+    font-size: 17px;
+    margin-top: 10px;
+    padding-left: 2.4%;
+    color: white;
+    height: 8%;
+    width: 95%;
+    border-radius:8px;
+    background-color: #32364a;
+    border: none;
+    outline: none;
+    line-height: 25px;
+    letter-spacing: 1.4px;
+}
+.chat::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #252222;
+}
+
+.chat::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #191c29;
+}
+
+.chat::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px #191c29;
+	background-color: #555;
+}
+
+header {
+    background-color:black; /* Replace with your desired header background color */
+    color: #fff; /* Replace with your desired header text color */
+    padding: 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; 
+    display: flex;
+    justify-content: space-between; /*
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) auto; */
+}
+nav ul .left{
+  margin-right: auto;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff; /* Replace with your desired link color */
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #555; /* Replace with your desired link hover background color */
+    border-radius: 5px;
+}
+
+/* background */
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 73vh;
+  --card-width: calc(var(--card-height) / 0.5);
+  --color-1: #FFD868;
+  --color-2: #F8615A;
+  --color-3: #B80D57;
+}
+*{
+    margin: 0;
+}
+
+body {
+  background: #212534;
+  flex-direction: column;
+}
+
+.outermain{
+    margin-top: 2%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 10px;
+  position: relative;
+  border-radius: 6px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  color: rgb(88 199 250 / 0%);
+}
+
+.main::before {
+  content: "";
+  width: 102%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , var(--color-1), var(--color-2) 43%, var(--color-3));
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -1%;
+    animation: spin 4s linear infinite;
+}
+
+.main::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 8);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 3));
+  background-image: linear-gradient(
+    var(--rotate)
+    , var(--color-1), var(--color-2) 43%, var(--color-3));
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+</style>

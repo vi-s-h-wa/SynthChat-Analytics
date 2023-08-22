@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% include 'chatcss.html' %}
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li id ='head' class="left">ChatGPT Api</li>
+                <li id ='lhead' style="padding-right: 3%;" class="right">{{username}}</li>
+                <li id ='head'  class="right"><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="outermain">
+    <div class="main">
+        <div class="chat" id="chat" style="color: white;">
+                {% for message in messages %}
+                <p class="user">User: {{ message.user }}</p>
+                <p class="bot">Bot: {{ message.reply }}</p>
+                {% endfor %}
+        </div>
+            <input onkeypress="handleKeyPress(event)" name="cinp" class="cinp" id="cinp" type="text" placeholder="Message">
+    </div>
+    </div>
+    <div id="sessionGraph">
+        {{ graph | safe }}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+    <script>
+        function applyStylesBasedOnEmotion(emotion) {
+            if (emotion == 'POSITIVE'){
+                document.documentElement.style.setProperty('--color-1', '#F0FF42');
+                document.documentElement.style.setProperty('--color-2', '#82CD47');
+                document.documentElement.style.setProperty('--color-3', '#54B435');
+            }
+            if (emotion == 'NEUTRAL'){
+                document.documentElement.style.setProperty('--color-1', '#5ddcff');
+                document.documentElement.style.setProperty('--color-2', '#3c67e3');
+                document.documentElement.style.setProperty('--color-3', '#4e00c2');
+            }
+            if (emotion == 'NEGATIVE'){
+                document.documentElement.style.setProperty('--color-1', '#FFD868');
+                document.documentElement.style.setProperty('--color-2', '#F8615A');
+                document.documentElement.style.setProperty('--color-3', '#B80D57');
+            }
+    }
+        function chatgpt() {
+            var input = document.getElementById("cinp").value;
+            var chat = document.getElementById('chat')
+            document.getElementById("cinp").value = ''; // Clear the input field immediately
+            chat.innerHTML += '<p class="user">User: ' + input + '</p>';
+            chat.innerHTML += '<p><lord-icon src="https://cdn.lordicon.com/kvsszuvz.json" trigger="loop" colors="primary:#fff,secondary:#08a88a" style="width:50px; height:50px"></lord-icon></p>';
+            scrollToBottom(chat);
+            $.ajax({
+                type: 'POST',
+                url: '/chatgpt/',
+                data: {
+                    'username':"{{username}}",
+                    'input': input,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    // Handle the successful response here
+                    var message = response.message;
+                    var chat = document.getElementById('chat');
+                    chat.lastChild.innerHTML = '<p class="bot">Bot: ' + message + '</p>';
+                    scrollToBottom(chat);
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.error('Error:', errorThrown);
+                }
+            });
+        }
+
+        // Handle keypress event on the input field
+        function handleKeyPress(event) {
+            if (event.keyCode === 13) {
+                chatgpt();
+            }
+        }
+
+        // Function to scroll to the bottom of the chat display div
+        function scrollToBottom(element) {
+            element.scrollTop = element.scrollHeight;
+        }
+
+        // Automatically scroll to the bottom on page load
+        $(document).ready(function() {
+            var chatDisplay = document.getElementById('chat');
+            scrollToBottom(chatDisplay);
+            var emotion = '{{ emotion }}';
+            applyStylesBasedOnEmotion(emotion);
+        });
+    </script>
+</body>
+</html>

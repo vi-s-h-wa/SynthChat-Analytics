@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'registercss.html' %}
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li id ='head'>ChatGPT Api</li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div class="login-box">
+            <form method="POST">
+                {% csrf_token %}
+                <h2>Register</h2>
+                <div class="input-box">
+                    <input type="text" class="username" id="username" autocomplete="off" name="username" required>
+                    <label>UserName</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="email" id="email" autocomplete="off" name="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="password" id="password"  name="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="cpassword" id="cpassword" name="cpassword" required>
+                    <label>Confrim Password</label>
+                </div>
+                <button type="submit">Register</button>
+                <p id ='error' ></p>
+            </form>
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const passwordField = document.getElementById("password");
+            const confirmPasswordField = document.getElementById("cpassword");
+            const registerButton = document.querySelector("button[type='submit']");
+
+            registerButton.addEventListener("click", function(event) {
+                if (passwordField.value !== confirmPasswordField.value) {
+                    event.preventDefault();
+                    var chat = document.getElementById('error');
+                    chat.innerHTML =  'Password enter must match!!!';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

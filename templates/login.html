@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'logincss.html' %}
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li id ='head'>ChatGPT Api</li>
+            </ul>
+        </nav>
+    </header>
+     <section>
+    <div class="login-box">
+        <form method="POST">
+            {% csrf_token %}
+            <h2>Login</h2>
+            <div class="input-box">
+                <input type="text" onfocus="hide()" class="username" autocomplete="off" id="username" name="username" required>
+                <label>UserName</label>
+            </div>
+
+            <div class="input-box">
+                <input type="password" onfocus="hide()" class="password" autocomplete="off" id="password" name="password" required>
+                <label>Password</label>
+            </div>
+
+            <button type="submit">Login</button>
+            <div class="register-link">
+                <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+            </div>
+            <p id="error">{{error}}</p>
+        </form>
+    </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function hide(){
+            var item = document.getElementById('error');
+            item.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

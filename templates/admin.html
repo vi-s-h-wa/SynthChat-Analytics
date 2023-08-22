@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'admincss.html' %}
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li id ='head' class="left">ChatGPT Api</li>
+                <li id ='lhead' style="padding-right: 3%;" class="right">{{username}}</li>
+                <li id ='head'  class="right"><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="main">
+        <div style="text-align: right;">
+            <input class="search" id="username" type="text" onkeypress="handleKeyPress(event)" placeholder="Enter an username....">
+        </div>
+        <div class="data">
+            <div class="data-one" id="user"> 
+                <span class="inner-head">No of users</span>
+                <div class="align">
+                <p class="value" >{{users}}</p>
+                <img class="icon" src="/static/images/group_921347.png" alt=""> 
+            </div>
+            </div>
+            <div class="data-two">
+                <span class="inner-head">No of sessions</span>
+                <div class="align">
+                <p class="value" id="session">{{sess}}</p>
+                <img class="icon" src="/static/images/online-class_6576155.png" alt=""> </div>
+            </div>
+            <div class="data-three">
+                <span class="inner-head">Conversation</span>
+                <div class="align">
+                <p class="value" id="msg">{{msgs}}</p>
+                <img class="icon" src="/static/images/chat_610413.png" alt=""> </div>
+            </div>
+            <div class="data-four">
+                <span class="inner-head">Total time spent</span>
+                <div class="align">
+                <p class="value" id="time"></p>
+                <img class="icon" src="/static/images/group_921347.png" alt=""> </div>
+            </div>
+        </div>
+        <div class="graph">
+            <div id="graph-one" class="graph-one">{{ graph1 | safe }}</div>
+            <div id="graph-two" class="graph-two">{{ graph2 | safe }}</div>
+        </div>
+    </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    timeString = '{{timespent}}';
+    if (timeString){
+    const timeParts = timeString.split(":");
+    const hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1]);
+    document.getElementById("time").textContent = hours + "hrs " + minutes + "mins";}
+
+    function handleKeyPress(event) {
+            if (event.keyCode === 13) {
+                search();
+            }
+        }
+    
+    function search() {
+    var un = document.getElementById("username").value;
+    $.ajax({
+        type: 'POST',
+        url: '/search/',
+        data: {
+            'username': un,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+            var time = response.timespent;
+            const regex = /(\d+)H(\d+)M/;
+            const match = time.match(regex);
+            const hours = parseInt(match[1]);
+            const minutes = parseInt(match[2]);
+            var t = `${hours}hrs ${minutes}mins`;
+            var graph1 = response.graph1
+            var graph2 = response.graph2
+            var msg = response.msgs;
+            var session = response.sess;
+            var change1 = document.getElementById('time');
+            var change2 = document.getElementById('session');
+            var change3 = document.getElementById('msg');
+            var change4 = document.getElementById('user');
+            var change5 = document.getElementById('graph-one');
+            var change6 = document.getElementById('graph-two');
+            change1.innerHTML = t;
+            change2.innerHTML = session;
+            change3.innerHTML = msg;
+            change4.style.display = "none";
+            change5.innerHTML = graph1;
+            change6.innerHTML = graph2;
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            console.error('Error:', errorThrown);
+        }
+        });
+    }
+
+</script>
+</body>
+</html>

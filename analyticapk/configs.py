@@ -1,0 +1,2 @@
+superadminusername = 'chat'
+superadminpassword = 'gpt'

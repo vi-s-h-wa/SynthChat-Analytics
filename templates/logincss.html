@@ -1,0 +1,154 @@
+{% load static %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Borel&display=swap');
+
+
+#head{
+    font-size: larger;
+    font-weight: bold;
+    font-family: 'Borel', cursive;
+}
+
+header {
+    background-color:black;
+    color: #fff;
+    padding: 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff; 
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+} 
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 89.4vh;
+    background: url('/static/images/2621341.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.login-box {
+    position: relative;
+    width: 600px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid rgba(119, 92, 92, 0.5);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(15px);
+
+}
+
+
+h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 310px;
+    margin: 30px 0;
+    border-bottom: 2px solid #fff;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label,.input-box input:valid~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #fff;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2rem;
+    line-height: 57px;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #000;
+    font-weight: 500;
+}    
+
+.register-link {
+    font-size: .9rem;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.register-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;    
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
+#error{
+    color: white; 
+    text-align: center; 
+    margin-top:10px ;
+}
+</style>

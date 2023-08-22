@@ -1,0 +1,2 @@
+superusername = 'vishwa'
+superpassword= 'vishwa'
