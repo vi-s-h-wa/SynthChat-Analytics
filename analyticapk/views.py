@@ -19,7 +19,7 @@ class login(View):
         if request.session.get('authenticated'):
             username = request.session['username']
             messages = Messages.objects.all().filter(username=username)
-            if username == 'chat':
+            if username == configs.superadminusername:
                 return render(request, 'admin.html')
             else:
                 return render(request, 'chat.html', {'messages':messages,'username':username})
