@@ -5,6 +5,7 @@ A web-centric chatbot leveraging the OpenAI API to interact with numerous users,
 ![image](https://github.com/vi-s-h-wa/SynthChat-Analytics/assets/110922604/6257f8e5-9b17-4e42-b905-318621a38107)
 
 ## Chat Page
+### Theme(Sentimental Analysis):- Green : Positive , Blue : Neutral , Red : Negative
 ![image](https://github.com/vi-s-h-wa/SynthChat-Analytics/assets/110922604/750e9316-e84d-4190-bbbd-ece177bd051d)
 
 ## Admin Page(Analytics)
