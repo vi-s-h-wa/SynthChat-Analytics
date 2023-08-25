@@ -9,4 +9,5 @@ A web-centric chatbot leveraging the OpenAI API to interact with numerous users,
 ![image](https://github.com/vi-s-h-wa/SynthChat-Analytics/assets/110922604/750e9316-e84d-4190-bbbd-ece177bd051d)
 
 ## Admin Page(Analytics)
+### Username input for user based analytics
 ![image](https://github.com/vi-s-h-wa/SynthChat-Analytics/assets/110922604/15cdb724-40da-4535-9ea6-4e93beaa288f)
